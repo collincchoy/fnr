@@ -1,5 +1,5 @@
 import argparse
-from .context_loader.file_loader import file_loader
+from .fnr_core import load_keywords_to_be_replaced, find_and_replace
 
 def parse_cla():
     parser = argparse.ArgumentParser()
@@ -13,11 +13,14 @@ def main():
     print('Hello, fnr!')
     args = parse_cla()
 
-    print('Loading the context variables from {} now...'.format(args.context_file))
-    context_file = file_loader(args.context_file)
-    context_file.show()
-    context_dict = context_file.get_context_vars()
-    print(context_dict)
+    # Get the mapping of items to be replaced
+    context = {}
+    try:
+        context = load_keywords_to_be_replaced(args)
+    except:
+        print('Failed to load keyword mapping of values to be replaced')
+        print('Exiting now...')
+        exit()
 
     # Read in
     template = ''
@@ -27,7 +30,7 @@ def main():
     # Write out
     out_file = (args.patient if args.in_place else 'newfile.out')
     with open(out_file, 'w') as out:
-        out.write(template.format(**context_dict))
+        out.write(find_and_replace(context, template))
 
 if __name__ == '__main__':
     main()

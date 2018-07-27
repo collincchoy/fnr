@@ -2,6 +2,7 @@ import unittest
 from fnr import fnr_core as fnr
 
 class FnrTests(unittest.TestCase):
+    print('FnrTests')
     def test_find_and_replace_simple_string(self):
         template = 'Hello, {name}!'
         context = {'name': 'Collin'}

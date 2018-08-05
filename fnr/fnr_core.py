@@ -1,4 +1,5 @@
 from .context_loaders import file_loader, console_loader
+import re
 
 def load_keywords_to_be_replaced(args):
     if (args.context_file):
@@ -10,4 +11,7 @@ def load_keywords_to_be_replaced(args):
     return context_file.load_context_vars()
 
 def find_and_replace(context, template):
-    return template.format(**context)
+    # escape special regex characters from keys
+    context = {re.escape(k):v for k,v in context.items()}
+    pattern = re.compile('|'.join(context.keys()))
+    return re.sub(pattern, lambda match: context[re.escape(match.group())], template)

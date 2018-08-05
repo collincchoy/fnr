@@ -10,6 +10,6 @@ class ContextLoaderTests(unittest.TestCase):
         expected = {'Promotion':' Dragons', 'Ham':' Cheese', 'Up':' Down'}
 
         dut = file_loader(TESTDATA_FILENAME)
-        actual = dut.get_context_vars()
+        actual = dut.load_context_vars()
 
         self.assertDictEqual(expected, actual)

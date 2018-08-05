@@ -1,4 +1,13 @@
-class file_loader:
+import abc
+
+class context_loader(abc.ABC):
+    def show(self):
+        pass
+
+    def get_context_vars(self):
+        pass
+
+class file_loader(context_loader):
     def __init__(self, f):
         self.file = f
         self.file_format = 'csv'

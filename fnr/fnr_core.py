@@ -1,4 +1,4 @@
-from .context_loader.file_loader import file_loader
+from .context_loaders import file_loader
 
 def load_keywords_to_be_replaced(args):
     print('Loading the context variables from {} now...'.format(args.context_file))

@@ -1,5 +1,6 @@
 FnR
 =====
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/just-plain-nasty.svg)](https://forthebadge.com)
 
 FnR is a command line utility powered by Python to substitute text in files.
 
